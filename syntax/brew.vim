@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language:   brew
-" Maintainer: Will Gray <graywh@gmail.com>
+" Language:	brew
+" Maintainer:	Will Gray <graywh@gmail.com>
 "
 " This is heavily based on Tim Pope's eruby.vim.
 
@@ -46,10 +46,10 @@ syn include @rTop syntax/r.vim
 
 syn cluster brewRegions contains=brewOneLiner,brewBlock,brewExpression,brewComment
 
-exe 'syn region  brewOneLiner    matchgroup=brewDelimiter  start="^%\{1,'.b:brew_nest_level.'\}%\@!"     end="$"  contains=@rTop         containedin=ALLBUT,@brewRegions  keepend oneline'
-exe 'syn region  brewBlock       matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}%\@!-\="  end="-\=%>"  contains=@rTop         containedin=ALLBUT,@brewRegions'
-exe 'syn region  brewExpression  matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}="        end="-\=%>"  contains=@rTop         containedin=ALLBUT,@brewRegions'
-exe 'syn region  brewComment     matchgroup=brewDelimiter  start="<%\{1,'.b:brew_nest_level.'\}#"        end="-\=%>"  contains=rTodo,@Spell  containedin=ALLBUT,@brewRegions  keepend'
+exe 'syn region brewOneLiner   matchgroup=brewDelimiter start="^%\{1,'.b:brew_nest_level.'\}%\@!"    end="$" contains=@rTop containedin=ALLBUT,@brwRegions keepend oneline'
+exe 'syn region brewBlock      matchgroup=brewDelimiter start="<%\{1,'.b:brew_nest_level.'\}%\@!-\=" end="-\=%\@<!%\{1,'.b:brew_nest_level.'\}>" contains=@rTop containedin=ALLBUT,@brwRegions keepend'
+exe 'syn region brewExpression matchgroup=brewDelimiter start="<%\{1,'.b:brew_nest_level.'\}="       end="-\=%\@<!%\{1,'.b:brew_nest_level.'\}>" contains=@rTop containedin=ALLBUT,@brwRegions keepend'
+exe 'syn region brewComment    matchgroup=brewDelimiter start="<%\{1,'.b:brew_nest_level.'\}#"       end="-\=%\@<!%\{1,'.b:brew_nest_level.'\}>" contains=rTodo,@Spell containedin=ALLBUT,@brwRegions keepend'
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -67,6 +67,7 @@ if version >= 508 || !exists("did_brew_syntax_inits")
 
   delcommand HiLink
 endif
+
 let b:current_syntax = 'brew'
 
 if main_syntax == 'brew'
